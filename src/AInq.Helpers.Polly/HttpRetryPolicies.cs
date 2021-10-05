@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Net;
+
 namespace AInq.Helpers.Polly;
 
 /// <summary> Retry policies for HTTP requests </summary>
