@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AInq.Helpers.Linq</name>
+    </assembly>
+    <members>
+        <member name="T:AInq.Helpers.Linq.BatchHelper">
+            <summary>  Enumerable batch extension </summary>
+        </member>
+        <member name="M:AInq.Helpers.Linq.BatchHelper.Batch``1(System.Collections.Generic.IEnumerable{``0},System.Int64)">
+            <summary> Pack the given enumerable in batches with a specified maximum batch size </summary>
+            <param name="source"> Source enumerable </param>
+            <param name="batchSize"> Maximum batch size </param>
+            <typeparam name="T"> Element type </typeparam>
+        </member>
+        <member name="M:AInq.Helpers.Linq.BatchHelper.Batch``1(System.Collections.Generic.IAsyncEnumerable{``0},System.Int64)">
+            <summary> Pack the given async enumerable in batches with a specified maximum batch size </summary>
+            <param name="source"> Source enumerable </param>
+            <param name="batchSize"> Maximum batch size </param>
+            <typeparam name="T"> Element type </typeparam>
+        </member>
+    </members>
+</doc>
