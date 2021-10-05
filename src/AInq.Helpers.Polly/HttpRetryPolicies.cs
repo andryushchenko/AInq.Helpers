@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Net;
-
 namespace AInq.Helpers.Polly;
 
 /// <summary> Retry policies for HTTP requests </summary>
@@ -22,14 +20,14 @@ public static class HttpRetryPolicies
     /// <summary> Retry forever on transient errors with logging if request context contains logger </summary>
     public static IAsyncPolicy<HttpResponseMessage> TransientRetryAsyncPolicy()
         => Policy.Handle<HttpRequestException>()
-                 .OrResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.RequestTimeout || (int) response.StatusCode >= 500)
+                 .OrResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.RequestTimeout || (int)response.StatusCode >= 500)
                  .RetryForeverAsync(OnTransientRetry);
 
     /// <summary> Retry on transient errors with logging if request context contains logger </summary>
     /// <param name="maxRetry"> Max retry count </param>
     public static IAsyncPolicy<HttpResponseMessage> TransientRetryAsyncPolicy(int maxRetry)
         => Policy.Handle<HttpRequestException>()
-                 .OrResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.RequestTimeout || (int) response.StatusCode >= 500)
+                 .OrResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.RequestTimeout || (int)response.StatusCode >= 500)
                  .RetryAsync(maxRetry >= 1 ? maxRetry : throw new ArgumentOutOfRangeException(nameof(maxRetry)), OnTransientRetry);
 
     /// <summary> Retry forever with given timeout on HTTP 429 with logging if request context contains logger </summary>
@@ -129,6 +127,6 @@ public static class HttpRetryPolicies
 #if NET5_0_OR_GREATER
         => Policy.HandleResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.TooManyRequests);
 #else
-        => Policy.HandleResult<HttpResponseMessage>(response => response.StatusCode == (HttpStatusCode) 429);
+        => Policy.HandleResult<HttpResponseMessage>(response => response.StatusCode == (HttpStatusCode)429);
 #endif
 }
