@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Net;
+
 namespace AInq.Helpers.Polly;
 
 /// <summary> Retry policies for HTTP requests </summary>
@@ -124,7 +126,7 @@ public static class HttpRetryPolicies
     }
 
     private static PolicyBuilder<HttpResponseMessage> CreateHttp429PolicyBuilder()
-#if NET5_0_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER
         => Policy.HandleResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.TooManyRequests);
 #else
         => Policy.HandleResult<HttpResponseMessage>(response => response.StatusCode == (HttpStatusCode)429);

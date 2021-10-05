@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Text.RegularExpressions;
+
 namespace AInq.Helpers.Email;
 
 /// <summary> Email <see cref="string" /> extension </summary>
@@ -88,7 +90,9 @@ public static class EmailHelper
         try
         {
             var emails = Pattern.Matches(source)
+#if NETSTANDARD2_0
                                 .Cast<Match>()
+#endif
                                 .Select(match => trimMarker
                                     ? $"{match.Groups["user"].Value}@{match.Groups["domain"].Value}".ToLowerInvariant()
                                     : match.Groups["email"].Value.ToLowerInvariant());
