@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AInq.Helpers.Polly</name>
+    </assembly>
+    <members>
+        <member name="T:AInq.Helpers.Polly.ContextHelper">
+            <summary> Helpers to store data in <see cref="T:Polly.Context" /> </summary>
+        </member>
+        <member name="M:AInq.Helpers.Polly.ContextHelper.Get``1(Polly.Context,System.String)">
+            <summary> Get data from context by key </summary>
+            <param name="context"> Context </param>
+            <param name="key"> Data key </param>
+            <typeparam name="T">Data type </typeparam>
+        </member>
+        <member name="M:AInq.Helpers.Polly.ContextHelper.With(Polly.Context,System.String,System.Object)">
+            <summary> Add data to context with key </summary>
+            <param name="context"> Context </param>
+            <param name="key"> Data key </param>
+            <param name="value"> Data value</param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.ContextHelper.WithCancellation(Polly.Context,System.Threading.CancellationToken)">
+            <summary> Add <see cref="T:System.Threading.CancellationToken" /> to context </summary>
+            <param name="context"> Context </param>
+            <param name="cancellation"> Cancellation token </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.ContextHelper.GetCancellationToken(Polly.Context)">
+            <summary> Get <see cref="T:System.Threading.CancellationToken" /> from context </summary>
+            <param name="context"> Context </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.ContextHelper.WithLogger(Polly.Context,Microsoft.Extensions.Logging.ILogger)">
+            <summary> Add logger to context </summary>
+            <param name="context"> Context </param>
+            <param name="logger"> Logger instance </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.ContextHelper.GetLogger(Polly.Context)">
+            <summary> Get logger from context </summary>
+            <param name="context"> Context </param>
+        </member>
+        <member name="T:AInq.Helpers.Polly.HttpPolicyHelper">
+            <summary> Helper to make HTTP requests with given <see cref="T:Polly.IAsyncPolicy`1" /> </summary>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.GetAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.Net.Http.HttpClient,System.String,Microsoft.Extensions.Logging.ILogger,System.Threading.CancellationToken,System.Boolean,Microsoft.Extensions.Logging.LogLevel)">
+            <summary> HTTP Get using preconfigured <see cref="T:System.Net.Http.HttpClient" /> </summary>
+            <param name="policy"> Request policy </param>
+            <param name="client"> Preconfigured HttpClient </param>
+            <param name="url"> Request URL </param>
+            <param name="logger"> Logger instance </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+            <param name="requestLogLevel"> Log Level for request result </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.GetAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.Net.Http.HttpClient,System.String,System.Threading.CancellationToken,System.Boolean)">
+            <summary> HTTP Get using preconfigured <see cref="T:System.Net.Http.HttpClient" /> </summary>
+            <param name="policy"> Request policy </param>
+            <param name="client"> Preconfigured HttpClient </param>
+            <param name="url"> Request URL </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.GetAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.String,Microsoft.Extensions.Logging.ILogger,System.Threading.CancellationToken,System.Boolean,Microsoft.Extensions.Logging.LogLevel)">
+            <summary> HTTP Get </summary>
+            <param name="policy"> Request policy </param>
+            <param name="url"> Request URL </param>
+            <param name="logger"> Logger instance </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+            <param name="requestLogLevel"> Log Level for request result </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.GetAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.String,System.Threading.CancellationToken,System.Boolean)">
+            <summary> HTTP Get </summary>
+            <param name="policy"> Request policy </param>
+            <param name="url"> Request URL </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.DeleteAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.Net.Http.HttpClient,System.String,Microsoft.Extensions.Logging.ILogger,System.Threading.CancellationToken,System.Boolean,Microsoft.Extensions.Logging.LogLevel)">
+            <summary> HTTP Delete using preconfigured <see cref="T:System.Net.Http.HttpClient" /> </summary>
+            <param name="policy"> Request policy </param>
+            <param name="client"> Preconfigured HttpClient </param>
+            <param name="url"> Request URL </param>
+            <param name="logger"> Logger instance </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+            <param name="requestLogLevel"> Log Level for request result </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.DeleteAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.Net.Http.HttpClient,System.String,System.Threading.CancellationToken,System.Boolean)">
+            <summary> HTTP Delete using preconfigured <see cref="T:System.Net.Http.HttpClient" /> </summary>
+            <param name="policy"> Request policy </param>
+            <param name="client"> Preconfigured HttpClient </param>
+            <param name="url"> Request URL </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.DeleteAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.String,Microsoft.Extensions.Logging.ILogger,System.Threading.CancellationToken,System.Boolean,Microsoft.Extensions.Logging.LogLevel)">
+            <summary> HTTP Delete </summary>
+            <param name="policy"> Request policy </param>
+            <param name="url"> Request URL </param>
+            <param name="logger"> Logger instance </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+            <param name="requestLogLevel"> Log Level for request result </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.DeleteAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.String,System.Threading.CancellationToken,System.Boolean)">
+            <summary> HTTP Delete </summary>
+            <param name="policy"> Request policy </param>
+            <param name="url"> Request URL </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.PostAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.Net.Http.HttpClient,System.String,System.Net.Http.HttpContent,Microsoft.Extensions.Logging.ILogger,System.Threading.CancellationToken,System.Boolean,Microsoft.Extensions.Logging.LogLevel)">
+            <summary> HTTP Post using preconfigured <see cref="T:System.Net.Http.HttpClient" /> </summary>
+            <param name="policy"> Request policy </param>
+            <param name="client"> Preconfigured HttpClient </param>
+            <param name="url"> Request URL </param>
+            <param name="content"> Request content </param>
+            <param name="logger"> Logger instance </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+            <param name="requestLogLevel"> Log Level for request result </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.PostAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.Net.Http.HttpClient,System.String,System.Net.Http.HttpContent,System.Threading.CancellationToken,System.Boolean)">
+            <summary> HTTP Post using preconfigured <see cref="T:System.Net.Http.HttpClient" /> </summary>
+            <param name="policy"> Request policy </param>
+            <param name="client"> Preconfigured HttpClient </param>
+            <param name="url"> Request URL </param>
+            <param name="content"> Request content </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.PostAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.String,System.Net.Http.HttpContent,Microsoft.Extensions.Logging.ILogger,System.Threading.CancellationToken,System.Boolean,Microsoft.Extensions.Logging.LogLevel)">
+            <summary> HTTP Post </summary>
+            <param name="policy"> Request policy </param>
+            <param name="url"> Request URL </param>
+            <param name="content"> Request content </param>
+            <param name="logger"> Logger instance </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+            <param name="requestLogLevel"> Log Level for request result </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.PostAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.String,System.Net.Http.HttpContent,System.Threading.CancellationToken,System.Boolean)">
+            <summary> HTTP Post </summary>
+            <param name="policy"> Request policy </param>
+            <param name="url"> Request URL </param>
+            <param name="content"> Request content </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.PutAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.Net.Http.HttpClient,System.String,System.Net.Http.HttpContent,Microsoft.Extensions.Logging.ILogger,System.Threading.CancellationToken,System.Boolean,Microsoft.Extensions.Logging.LogLevel)">
+            <summary> HTTP Put using preconfigured <see cref="T:System.Net.Http.HttpClient" /> </summary>
+            <param name="policy"> Request policy </param>
+            <param name="client"> Preconfigured HttpClient </param>
+            <param name="url"> Request URL </param>
+            <param name="content"> Request content </param>
+            <param name="logger"> Logger instance </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+            <param name="requestLogLevel"> Log Level for request result </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.PutAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.Net.Http.HttpClient,System.String,System.Net.Http.HttpContent,System.Threading.CancellationToken,System.Boolean)">
+            <summary> HTTP Put using preconfigured <see cref="T:System.Net.Http.HttpClient" /> </summary>
+            <param name="policy"> Request policy </param>
+            <param name="client"> Preconfigured HttpClient </param>
+            <param name="url"> Request URL </param>
+            <param name="content"> Request content </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.PutAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.String,System.Net.Http.HttpContent,Microsoft.Extensions.Logging.ILogger,System.Threading.CancellationToken,System.Boolean,Microsoft.Extensions.Logging.LogLevel)">
+            <summary> HTTP Put </summary>
+            <param name="policy"> Request policy </param>
+            <param name="url"> Request URL </param>
+            <param name="content"> Request content </param>
+            <param name="logger"> Logger instance </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+            <param name="requestLogLevel"> Log Level for request result </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.PutAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.String,System.Net.Http.HttpContent,System.Threading.CancellationToken,System.Boolean)">
+            <summary> HTTP Put </summary>
+            <param name="policy"> Request policy </param>
+            <param name="url"> Request URL </param>
+            <param name="content"> Request content </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+        </member>
+        <member name="T:AInq.Helpers.Polly.HttpRetryPolicies">
+            <summary> Retry policies for HTTP requests </summary>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpRetryPolicies.TransientRetryAsyncPolicy">
+            <summary> Retry forever on transient errors with logging if request context contains logger </summary>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpRetryPolicies.TransientRetryAsyncPolicy(System.Int32)">
+            <summary> Retry on transient errors with logging if request context contains logger </summary>
+            <param name="maxRetry"> Max retry count </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpRetryPolicies.TimeoutRetryAsyncPolicy(System.TimeSpan)">
+            <summary> Retry forever with given timeout on HTTP 429 with logging if request context contains logger </summary>
+            <param name="timeout"> Retry timeout </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpRetryPolicies.TimeoutRetryAsyncPolicy(System.TimeSpan,System.Int32)">
+            <summary> Retry with given timeout on HTTP 429 with logging if request context contains logger </summary>
+            <param name="timeout"> Retry timeout </param>
+            <param name="maxRetry"> Max retry count </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpRetryPolicies.TimeoutRetryAsyncPolicy(System.Func{System.Int32,System.TimeSpan})">
+            <summary> Retry forever with provided timeout on HTTP 429 with logging if request context contains logger </summary>
+            <param name="timeoutProvider"> Timeout value provider </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpRetryPolicies.TimeoutRetryAsyncPolicy(System.Func{System.Int32,System.TimeSpan},System.Int32)">
+            <summary> Retry with provided timeout on HTTP 429 with logging if request context contains logger </summary>
+            <param name="timeoutProvider"> Timeout value provider </param>
+            <param name="maxRetry"> Max retry count </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpRetryPolicies.TimeoutRetryAsyncPolicy(System.Func{System.Net.Http.HttpResponseMessage,System.Int32,System.TimeSpan})">
+            <summary> Retry forever with provided timeout on HTTP 429 with logging if request context contains logger </summary>
+            <param name="timeoutProvider"> Timeout value provider </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpRetryPolicies.TimeoutRetryAsyncPolicy(System.Func{System.Net.Http.HttpResponseMessage,System.Int32,System.TimeSpan},System.Int32)">
+            <summary> Retry with provided timeout on HTTP 429 with logging if request context contains logger </summary>
+            <param name="timeoutProvider"> Timeout value provider </param>
+            <param name="maxRetry"> Max retry count </param>
+        </member>
+    </members>
+</doc>
