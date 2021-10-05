@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AInq.Helpers.Email</name>
+    </assembly>
+    <members>
+        <member name="T:AInq.Helpers.Email.EmailHelper">
+            <summary> Email <see cref="T:System.String" /> extension </summary>
+        </member>
+        <member name="M:AInq.Helpers.Email.EmailHelper.ContainsEmail(System.String)">
+            <summary> Check is source string contains correct email </summary>
+            <param name="source"> Source </param>
+        </member>
+        <member name="M:AInq.Helpers.Email.EmailHelper.IsEmail(System.String)">
+            <summary> Check is source string is correct email </summary>
+            <param name="source"> Source </param>
+        </member>
+        <member name="M:AInq.Helpers.Email.EmailHelper.GetEmail(System.String,System.Boolean)">
+            <summary> Get single email from source string </summary>
+            <param name="source"> Source </param>
+            <param name="trimMarker"> Remove additional marker (user+MARKER@domain) from email </param>
+            <exception cref="T:System.ArgumentException"> Thrown if source is not correct email or contains more then one email</exception>
+        </member>
+        <member name="M:AInq.Helpers.Email.EmailHelper.GetEmails(System.String,System.Boolean)">
+            <summary> Get emails from source string </summary>
+            <param name="source"> Source </param>
+            <param name="trimMarker"> Remove additional marker (user+MARKER@domain) from email </param>
+        </member>
+        <member name="M:AInq.Helpers.Email.EmailHelper.GetEmailUser(System.String)">
+            <summary> Get user name (USER+marker@domain) from email </summary>
+            <param name="email"> Email </param>
+            <exception cref="T:System.ArgumentException"> Thrown if is not correct email </exception>
+        </member>
+        <member name="M:AInq.Helpers.Email.EmailHelper.GetEmailDomain(System.String)">
+            <summary> Get domain name (user+marker@DOMAIN) from email </summary>
+            <param name="email"> Email </param>
+            <exception cref="T:System.ArgumentException"> Thrown if is not correct email </exception>
+        </member>
+    </members>
+</doc>
