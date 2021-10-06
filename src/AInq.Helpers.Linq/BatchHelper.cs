@@ -14,16 +14,18 @@
 
 namespace AInq.Helpers.Linq;
 
-/// <summary>  Enumerable batch extension </summary>
+/// <summary> Enumerable batch extension </summary>
 public static class BatchHelper
 {
     /// <summary> Pack the given enumerable in batches with a specified maximum batch size </summary>
     /// <param name="source"> Source enumerable </param>
     /// <param name="batchSize"> Maximum batch size </param>
     /// <typeparam name="T"> Element type </typeparam>
+    /// <exception cref="ArgumentOutOfRangeException"> Thrown for incorrect <paramref name="batchSize" /> </exception>
     public static IEnumerable<IEnumerable<T>> Batch<T>(this IEnumerable<T> source, long batchSize)
     {
-        if (batchSize < 1) throw new ArgumentOutOfRangeException(nameof(batchSize));
+        _ = source ?? throw new ArgumentNullException(nameof(source));
+        if (batchSize < 1) throw new ArgumentOutOfRangeException(nameof(batchSize), batchSize, "Should be >= 1");
         using var enumerator = source.GetEnumerator();
         while (enumerator.MoveNext())
             yield return enumerator.Take(batchSize);
@@ -33,9 +35,11 @@ public static class BatchHelper
     /// <param name="source"> Source enumerable </param>
     /// <param name="batchSize"> Maximum batch size </param>
     /// <typeparam name="T"> Element type </typeparam>
+    /// <exception cref="ArgumentOutOfRangeException"> Thrown for incorrect <paramref name="batchSize" /> </exception>
     public static async IAsyncEnumerable<IAsyncEnumerable<T>> Batch<T>(this IAsyncEnumerable<T> source, long batchSize)
     {
-        if (batchSize < 1) throw new ArgumentOutOfRangeException(nameof(batchSize));
+        _ = source ?? throw new ArgumentNullException(nameof(source));
+        if (batchSize < 1) throw new ArgumentOutOfRangeException(nameof(batchSize), batchSize, "Should be >= 1");
         await using var enumerator = source.GetAsyncEnumerator();
         while (await enumerator.MoveNextAsync())
             yield return enumerator.TakeAsync(batchSize);

@@ -19,16 +19,15 @@ namespace AInq.Helpers.Email;
 /// <summary> Email <see cref="string" /> extension </summary>
 public static class EmailHelper
 {
-    private static readonly Regex Pattern =
-        new(
-            @"\s*(?<email>(?<user>\w[\w!#$%&'*/=?`{|}~^-]*(?:\.[\w!#$%&'*/=?`{|}~^-]+)*)(?<marker>\+[\w!#$%&'*/=?`{|}~^+\.-]*)?@(?<domain>(?:[a-z0-9-]+\.)+[a-z]{2,}))\s*",
-            RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    private static readonly Regex Pattern = new(
+        @"\s*(?<email>(?<user>\w[\w!#$%&'*/=?`{|}~^-]*(?:\.[\w!#$%&'*/=?`{|}~^-]+)*)(?<marker>\+[\w!#$%&'*/=?`{|}~^+\.-]*)?@(?<domain>(?:[a-z0-9-]+\.)+[a-z]{2,}))\s*",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     /// <summary> Check is source string contains correct email </summary>
     /// <param name="source"> Source </param>
     public static bool ContainsEmail(this string source)
     {
-        _ = source ?? throw new ArgumentNullException(nameof(source));
+        if (string.IsNullOrWhiteSpace(source)) return false;
         try
         {
             return Pattern.IsMatch(source);
@@ -43,7 +42,7 @@ public static class EmailHelper
     /// <param name="source"> Source </param>
     public static bool IsEmail(this string source)
     {
-        _ = source ?? throw new ArgumentNullException(nameof(source));
+        if (string.IsNullOrWhiteSpace(source)) return false;
         try
         {
             var matches = Pattern.Matches(source);
@@ -58,7 +57,7 @@ public static class EmailHelper
     /// <summary> Get single email from source string </summary>
     /// <param name="source"> Source </param>
     /// <param name="trimMarker"> Remove additional marker (user+MARKER@domain) from email </param>
-    /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more then one email</exception>
+    /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
     public static string GetEmail(this string source, bool trimMarker = false)
     {
         _ = source ?? throw new ArgumentNullException(nameof(source));
@@ -86,7 +85,7 @@ public static class EmailHelper
     /// <param name="trimMarker"> Remove additional marker (user+MARKER@domain) from email </param>
     public static IReadOnlyCollection<string> GetEmails(this string source, bool trimMarker = false)
     {
-        _ = source ?? throw new ArgumentNullException(nameof(source));
+        if (string.IsNullOrWhiteSpace(source)) return Array.Empty<string>();
         try
         {
             var emails = Pattern.Matches(source)
@@ -106,7 +105,7 @@ public static class EmailHelper
 
     /// <summary> Get user name (USER+marker@domain) from email </summary>
     /// <param name="email"> Email </param>
-    /// <exception cref="ArgumentException"> Thrown if is not correct email </exception>
+    /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
     public static string GetEmailUser(this string email)
     {
         _ = email ?? throw new ArgumentNullException(nameof(email));
@@ -129,7 +128,7 @@ public static class EmailHelper
 
     /// <summary> Get domain name (user+marker@DOMAIN) from email </summary>
     /// <param name="email"> Email </param>
-    /// <exception cref="ArgumentException"> Thrown if is not correct email </exception>
+    /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
     public static string GetEmailDomain(this string email)
     {
         _ = email ?? throw new ArgumentNullException(nameof(email));

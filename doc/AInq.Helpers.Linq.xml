@@ -5,19 +5,21 @@
     </assembly>
     <members>
         <member name="T:AInq.Helpers.Linq.BatchHelper">
-            <summary>  Enumerable batch extension </summary>
+            <summary> Enumerable batch extension </summary>
         </member>
         <member name="M:AInq.Helpers.Linq.BatchHelper.Batch``1(System.Collections.Generic.IEnumerable{``0},System.Int64)">
             <summary> Pack the given enumerable in batches with a specified maximum batch size </summary>
             <param name="source"> Source enumerable </param>
             <param name="batchSize"> Maximum batch size </param>
             <typeparam name="T"> Element type </typeparam>
+            <exception cref="T:System.ArgumentOutOfRangeException"> Thrown for incorrect <paramref name="batchSize" /> </exception>
         </member>
         <member name="M:AInq.Helpers.Linq.BatchHelper.Batch``1(System.Collections.Generic.IAsyncEnumerable{``0},System.Int64)">
             <summary> Pack the given async enumerable in batches with a specified maximum batch size </summary>
             <param name="source"> Source enumerable </param>
             <param name="batchSize"> Maximum batch size </param>
             <typeparam name="T"> Element type </typeparam>
+            <exception cref="T:System.ArgumentOutOfRangeException"> Thrown for incorrect <paramref name="batchSize" /> </exception>
         </member>
     </members>
 </doc>

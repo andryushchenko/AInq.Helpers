@@ -8,7 +8,7 @@
 		<Copyright>Anton Andryushchenko</Copyright>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/andryushchenko/AInq.Helpers</PackageProjectUrl>
-		<Version>1.2.0-preview.5</Version>
+		<Version>2.0.0-rc.1</Version>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>

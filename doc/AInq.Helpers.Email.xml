@@ -19,7 +19,7 @@
             <summary> Get single email from source string </summary>
             <param name="source"> Source </param>
             <param name="trimMarker"> Remove additional marker (user+MARKER@domain) from email </param>
-            <exception cref="T:System.ArgumentException"> Thrown if source is not correct email or contains more then one email</exception>
+            <exception cref="T:System.ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
         </member>
         <member name="M:AInq.Helpers.Email.EmailHelper.GetEmails(System.String,System.Boolean)">
             <summary> Get emails from source string </summary>
@@ -29,12 +29,12 @@
         <member name="M:AInq.Helpers.Email.EmailHelper.GetEmailUser(System.String)">
             <summary> Get user name (USER+marker@domain) from email </summary>
             <param name="email"> Email </param>
-            <exception cref="T:System.ArgumentException"> Thrown if is not correct email </exception>
+            <exception cref="T:System.ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
         </member>
         <member name="M:AInq.Helpers.Email.EmailHelper.GetEmailDomain(System.String)">
             <summary> Get domain name (user+marker@DOMAIN) from email </summary>
             <param name="email"> Email </param>
-            <exception cref="T:System.ArgumentException"> Thrown if is not correct email </exception>
+            <exception cref="T:System.ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
         </member>
     </members>
 </doc>
