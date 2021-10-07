@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+	  <Authors>Anton Andryushchenko</Authors>
+	  <RepositoryUrl>https://github.com/andryushchenko/AInq.Helpers</RepositoryUrl>
+	  <Copyright>Anton Andryushchenko</Copyright>
+	  <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+	  <PackageProjectUrl>https://github.com/andryushchenko/AInq.Helpers</PackageProjectUrl>
+	  <Version>2.0.0-rc.1</Version>
+	  <LangVersion>latest</LangVersion>
+	  <Nullable>enable</Nullable>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	  <PackageTags>AInq;Email;Helper</PackageTags>
+	  <Description>Simple helpers for Phone numbers</Description>
+  </PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DocumentationFile>..\..\doc\AInq.Helpers.PhoneNumber.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="libphonenumber-csharp" Version="8.12.33" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="PhoneNumbers"/>
+	</ItemGroup>
+
+</Project>

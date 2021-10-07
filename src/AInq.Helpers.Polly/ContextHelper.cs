@@ -23,7 +23,7 @@ public static class ContextHelper
     /// <summary> Get data from context by key </summary>
     /// <param name="context"> Context </param>
     /// <param name="key"> Data key </param>
-    /// <typeparam name="T">Data type </typeparam>
+    /// <typeparam name="T"> Data type </typeparam>
     public static T? Get<T>(this Context context, string key)
         => (context ?? throw new ArgumentNullException(nameof(context)))
            .TryGetValue(string.IsNullOrWhiteSpace(key) ? throw new ArgumentNullException(nameof(key)) : key, out var value)
@@ -34,7 +34,7 @@ public static class ContextHelper
     /// <summary> Add data to context with key </summary>
     /// <param name="context"> Context </param>
     /// <param name="key"> Data key </param>
-    /// <param name="value"> Data value</param>
+    /// <param name="value"> Data value </param>
     public static Context With(this Context context, string key, object value)
     {
         (context ?? throw new ArgumentNullException(nameof(context)))[string.IsNullOrWhiteSpace(key)

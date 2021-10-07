@@ -31,6 +31,15 @@ Helpers to work with email address
 - Check if string is correct email 
 - Get specific email address parts
 
+#### [![Nuget](https://img.shields.io/nuget/v/AInq.Helpers.PhoneNumber)](https://www.nuget.org/packages/AInq.Helpers.PhoneNumber/) AInq.Helpers.PhoneNumber
+
+Helpers to parse phone numbers from string
+
+- Get all valid numbers or mobile only
+- Parse one source with different regional formats at one call
+
+This library uses [libphonenumber-csharp](https://github.com/twcclegg/libphonenumber-csharp) inside
+
 ## Documentation
 
 As for now documentation is provided in this document and by XML documentation inside packages.
