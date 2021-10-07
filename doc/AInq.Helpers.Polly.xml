@@ -11,13 +11,13 @@
             <summary> Get data from context by key </summary>
             <param name="context"> Context </param>
             <param name="key"> Data key </param>
-            <typeparam name="T">Data type </typeparam>
+            <typeparam name="T"> Data type </typeparam>
         </member>
         <member name="M:AInq.Helpers.Polly.ContextHelper.With(Polly.Context,System.String,System.Object)">
             <summary> Add data to context with key </summary>
             <param name="context"> Context </param>
             <param name="key"> Data key </param>
-            <param name="value"> Data value</param>
+            <param name="value"> Data value </param>
         </member>
         <member name="M:AInq.Helpers.Polly.ContextHelper.WithCancellation(Polly.Context,System.Threading.CancellationToken)">
             <summary> Add <see cref="T:System.Threading.CancellationToken" /> to context </summary>
