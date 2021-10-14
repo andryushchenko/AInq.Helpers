@@ -19,39 +19,23 @@ namespace AInq.Helpers.Email;
 /// <summary> Email <see cref="string" /> extension </summary>
 public static class EmailHelper
 {
-    private static readonly Regex Pattern = new(
+    private static readonly Lazy<Regex> Pattern = new(() => new Regex(
         @"\s*(?<email>(?<user>\w[\w!#$%&'*/=?`{|}~^-]*(?:\.[\w!#$%&'*/=?`{|}~^-]+)*)(?<marker>\+[\w!#$%&'*/=?`{|}~^+\.-]*)?@(?<domain>(?:[a-z0-9-]+\.)+[a-z]{2,}))\s*",
-        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        RegexOptions.IgnoreCase | RegexOptions.Compiled,
+        Regex.InfiniteMatchTimeout));
 
     /// <summary> Check is source string contains correct email </summary>
     /// <param name="source"> Source </param>
     public static bool ContainsEmail(this string source)
-    {
-        if (string.IsNullOrWhiteSpace(source)) return false;
-        try
-        {
-            return Pattern.IsMatch(source);
-        }
-        catch (Exception)
-        {
-            return false;
-        }
-    }
+        => !string.IsNullOrWhiteSpace(source) && Pattern.Value.IsMatch(source);
 
     /// <summary> Check is source string is correct email </summary>
     /// <param name="source"> Source </param>
     public static bool IsEmail(this string source)
     {
         if (string.IsNullOrWhiteSpace(source)) return false;
-        try
-        {
-            var matches = Pattern.Matches(source);
-            return matches.Count == 1 && matches[0].Value == source;
-        }
-        catch (Exception)
-        {
-            return false;
-        }
+        var matches = Pattern.Value.Matches(source);
+        return matches.Count == 1 && string.Equals(matches[0].Value, source, StringComparison.InvariantCultureIgnoreCase);
     }
 
     /// <summary> Get single email from source string </summary>
@@ -60,16 +44,7 @@ public static class EmailHelper
     /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
     public static string GetEmail(this string source, bool trimMarker = false)
     {
-        _ = source ?? throw new ArgumentNullException(nameof(source));
-        MatchCollection matches;
-        try
-        {
-            matches = Pattern.Matches(source);
-        }
-        catch (Exception ex)
-        {
-            throw new ArgumentException("Not a correct email", nameof(source), ex);
-        }
+        var matches = Pattern.Value.Matches(source ?? throw new ArgumentNullException(nameof(source)));
         return matches.Count switch
         {
             0 => throw new ArgumentException("Not a correct email", nameof(source)),
@@ -84,40 +59,23 @@ public static class EmailHelper
     /// <param name="source"> Source </param>
     /// <param name="trimMarker"> Remove additional marker (user+MARKER@domain) from email </param>
     public static IReadOnlyCollection<string> GetEmails(this string source, bool trimMarker = false)
-    {
-        if (string.IsNullOrWhiteSpace(source)) return Array.Empty<string>();
-        try
-        {
-            var emails = Pattern.Matches(source)
+        => string.IsNullOrWhiteSpace(source)
+            ? Array.Empty<string>()
+            : new HashSet<string>(Pattern.Value.Matches(source)
 #if NETSTANDARD2_0
-                                .Cast<Match>()
+                                         .Cast<Match>()
 #endif
-                                .Select(match => trimMarker
-                                    ? $"{match.Groups["user"].Value}@{match.Groups["domain"].Value}".ToLowerInvariant()
-                                    : match.Groups["email"].Value.ToLowerInvariant());
-            return new HashSet<string>(emails, StringComparer.InvariantCultureIgnoreCase);
-        }
-        catch (Exception)
-        {
-            return Array.Empty<string>();
-        }
-    }
+                                         .Select(match => trimMarker
+                                             ? $"{match.Groups["user"].Value}@{match.Groups["domain"].Value}".ToLowerInvariant()
+                                             : match.Groups["email"].Value.ToLowerInvariant()),
+                StringComparer.InvariantCultureIgnoreCase);
 
     /// <summary> Get user name (USER+marker@domain) from email </summary>
     /// <param name="email"> Email </param>
     /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
     public static string GetEmailUser(this string email)
     {
-        _ = email ?? throw new ArgumentNullException(nameof(email));
-        MatchCollection matches;
-        try
-        {
-            matches = Pattern.Matches(email);
-        }
-        catch (Exception ex)
-        {
-            throw new ArgumentException("Not a correct email", nameof(email), ex);
-        }
+        var matches = Pattern.Value.Matches(email ?? throw new ArgumentNullException(nameof(email)));
         return matches.Count switch
         {
             0 => throw new ArgumentException("Not a correct email", nameof(email)),
@@ -131,16 +89,7 @@ public static class EmailHelper
     /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
     public static string GetEmailDomain(this string email)
     {
-        _ = email ?? throw new ArgumentNullException(nameof(email));
-        MatchCollection matches;
-        try
-        {
-            matches = Pattern.Matches(email);
-        }
-        catch (Exception ex)
-        {
-            throw new ArgumentException("Not a correct email", nameof(email), ex);
-        }
+        var matches = Pattern.Value.Matches(email ?? throw new ArgumentNullException(nameof(email)));
         return matches.Count switch
         {
             0 => throw new ArgumentException("Not a correct email", nameof(email)),
