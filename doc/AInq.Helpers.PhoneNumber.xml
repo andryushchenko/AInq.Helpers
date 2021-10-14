@@ -7,9 +7,6 @@
         <member name="T:AInq.Helpers.PhoneNumber.PhoneNumberHelper">
             <summary> Phone number parsing <see cref="T:System.String" /> extension </summary>
         </member>
-        <member name="F:AInq.Helpers.PhoneNumber.PhoneNumberHelper.DefaultExtensionSeparator">
-            <summary> Default phone number extension separator </summary>
-        </member>
         <member name="P:AInq.Helpers.PhoneNumber.PhoneNumberHelper.PhoneRegions">
             <summary> Regions (ISO 3166) used for number parsing in order of priority </summary>
             <remarks> Default value is country code from <see cref="P:System.Globalization.CultureInfo.CurrentCulture" /> </remarks>
