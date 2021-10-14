@@ -19,10 +19,8 @@ namespace AInq.Helpers.PhoneNumber;
 /// <summary> Phone number parsing <see cref="string" /> extension </summary>
 public static class PhoneNumberHelper
 {
-    /// <summary> Default phone number extension separator </summary>
-    public const string DefaultExtensionSeparator = " # ";
-
-    private static readonly PhoneNumberUtil Util = PhoneNumberUtil.GetInstance();
+    private const string DefaultExtensionSeparator = " # ";
+    private static readonly Lazy<PhoneNumberUtil> Util = new(PhoneNumberUtil.GetInstance);
     private static readonly PhoneNumberMatchEqualityComparer Comparer = new();
 
     /// <summary> Regions (ISO 3166) used for number parsing in order of priority </summary>
@@ -47,14 +45,15 @@ public static class PhoneNumberHelper
             : new HashSet<string>((phoneRegions.Length == 0 ? PhoneRegions : phoneRegions)
                                   .Aggregate(Enumerable.Empty<PhoneNumberMatch>(),
                                       (matches, region)
-                                          => matches.Union(Util.FindNumbers(source, region).Where(match => Util.IsValidNumber(match.Number)),
+                                          => matches.Union(Util.Value.FindNumbers(source, region)
+                                                               .Where(match => Util.Value.IsValidNumber(match.Number)),
                                               Comparer))
                                   .Select(match => match.Number.HasExtension && !trimExtension
                                       ? string.Join(string.Empty,
-                                          Util.Format(match.Number, PhoneNumberFormat.E164),
+                                          Util.Value.Format(match.Number, PhoneNumberFormat.E164),
                                           ExtensionSeparator,
                                           match.Number.Extension)
-                                      : Util.Format(match.Number, PhoneNumberFormat.E164)),
+                                      : Util.Value.Format(match.Number, PhoneNumberFormat.E164)),
                 StringComparer.InvariantCultureIgnoreCase);
 
     /// <inheritdoc cref="GetMobilePhones(string,bool,string[])" />
@@ -71,20 +70,20 @@ public static class PhoneNumberHelper
             : new HashSet<string>((phoneRegions.Length == 0 ? PhoneRegions : phoneRegions)
                                   .Aggregate(Enumerable.Empty<PhoneNumberMatch>(),
                                       (matches, region)
-                                          => matches.Union(Util.FindNumbers(source, region)
+                                          => matches.Union(Util.Value.FindNumbers(source, region)
                                                                .Where(match => strict
                                                                    ? IsNumberOfType(match.Number, PhoneNumberType.MOBILE)
                                                                    : IsNumberOfType(match.Number,
                                                                        PhoneNumberType.MOBILE,
                                                                        PhoneNumberType.FIXED_LINE_OR_MOBILE)),
                                               Comparer))
-                                  .Select(match => Util.Format(match.Number, PhoneNumberFormat.E164)),
+                                  .Select(match => Util.Value.Format(match.Number, PhoneNumberFormat.E164)),
                 StringComparer.InvariantCultureIgnoreCase);
 
     private static bool IsNumberOfType(PhoneNumbers.PhoneNumber phone, params PhoneNumberType[] types)
     {
-        if (!Util.IsValidNumber(phone)) return false;
-        var numberType = Util.GetNumberType(phone);
+        if (!Util.Value.IsValidNumber(phone)) return false;
+        var numberType = Util.Value.GetNumberType(phone);
         return types.Any(type => numberType == type);
     }
 }
