@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{BD586680-5
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		AInq.Helpers.sln.DotSettings = AInq.Helpers.sln.DotSettings
+		Directory.Build.props = Directory.Build.props
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
@@ -19,7 +20,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AInq.Helpers.Linq", "src\AI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AInq.Helpers.Polly", "src\AInq.Helpers.Polly\AInq.Helpers.Polly.csproj", "{F32ACAC4-C61C-499F-AC00-6EDF4579BF73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AInq.Helpers.PhoneNumber", "src\AInq.Helpers.PhoneNumber\AInq.Helpers.PhoneNumber.csproj", "{6FAA61B5-11EE-4902-B16A-DEFC49C54B44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AInq.Helpers.PhoneNumber", "src\AInq.Helpers.PhoneNumber\AInq.Helpers.PhoneNumber.csproj", "{6FAA61B5-11EE-4902-B16A-DEFC49C54B44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
