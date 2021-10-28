@@ -17,8 +17,8 @@ namespace AInq.Helpers.Polly;
 /// <summary> Helpers to store data in <see cref="Context" /> </summary>
 public static class ContextHelper
 {
-    private const string CancellationKey = "AInq.Helpers.Polly.Context.Cancellation";
-    private const string LoggerKey = "AInq.Helpers.Polly.Context.Logger";
+    private const string CancellationKey = "AInq.Helpers.Polly.ContextHelper.Keys.Cancellation";
+    private const string LoggerKey = "AInq.Helpers.Polly.ContextHelper.Keys.Logger";
 
     /// <summary> Get data from context by key </summary>
     /// <param name="context"> Context </param>
