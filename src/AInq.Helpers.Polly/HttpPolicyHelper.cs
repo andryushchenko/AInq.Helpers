@@ -17,11 +17,11 @@ namespace AInq.Helpers.Polly;
 /// <summary> Helper to make HTTP requests with given <see cref="IAsyncPolicy{TResult}" /> </summary>
 public static class HttpPolicyHelper
 {
-    private const string ClientKey = "client";
-    private const string MethodKey = "method";
-    private const string ContentKey = "url";
-    private const string UrlKey = "content";
-    private const string RequestKey = "request";
+    private const string ClientKey = "AInq.Helpers.Polly.HttpPolicyHelper.Keys.Client";
+    private const string MethodKey = "AInq.Helpers.Polly.HttpPolicyHelper.Keys.Method";
+    private const string ContentKey = "AInq.Helpers.Polly.HttpPolicyHelper.Keys.Url";
+    private const string UrlKey = "AInq.Helpers.Polly.HttpPolicyHelper.Keys.Content";
+    private const string RequestKey = "AInq.Helpers.Polly.HttpPolicyHelper.Keys.Request";
 
     private static async Task<HttpResponseMessage> RequestAsync(this IAsyncPolicy<HttpResponseMessage> policy, HttpClient client, string? url,
         HttpMethod method, HttpContent? content, ILogger logger, CancellationToken cancellation, bool continueOnCapturedContext, LogLevel logLevel)
