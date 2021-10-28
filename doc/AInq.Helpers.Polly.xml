@@ -40,6 +40,40 @@
         <member name="T:AInq.Helpers.Polly.HttpPolicyHelper">
             <summary> Helper to make HTTP requests with given <see cref="T:Polly.IAsyncPolicy`1" /> </summary>
         </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.SendAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.Net.Http.HttpClient,System.Net.Http.HttpRequestMessage,Microsoft.Extensions.Logging.ILogger,System.Threading.CancellationToken,System.Boolean,Microsoft.Extensions.Logging.LogLevel)">
+            <summary> Custom HTTP request using preconfigured <see cref="T:System.Net.Http.HttpClient" /> </summary>
+            <param name="policy"> Request policy </param>
+            <param name="client"> Preconfigured HttpClient </param>
+            <param name="request"> Request </param>
+            <param name="logger"> Logger instance </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+            <param name="requestLogLevel"> Log Level for request result </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.SendAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.Net.Http.HttpClient,System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken,System.Boolean)">
+            <summary> Custom HTTP request using preconfigured <see cref="T:System.Net.Http.HttpClient" /> </summary>
+            <param name="policy"> Request policy </param>
+            <param name="client"> Preconfigured HttpClient </param>
+            <param name="request"> Request </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.SendAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.Net.Http.HttpRequestMessage,Microsoft.Extensions.Logging.ILogger,System.Threading.CancellationToken,System.Boolean,Microsoft.Extensions.Logging.LogLevel)">
+            <summary> Custom HTTP request </summary>
+            <param name="policy"> Request policy </param>
+            <param name="request"> Request </param>
+            <param name="logger"> Logger instance </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+            <param name="requestLogLevel"> Log Level for request result </param>
+        </member>
+        <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.SendAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken,System.Boolean)">
+            <summary> Custom HTTP request </summary>
+            <param name="policy"> Request policy </param>
+            <param name="request"> Request </param>
+            <param name="cancellation"> Cancellation token </param>
+            <param name="continueOnCapturedContext"> Continue on captured context </param>
+        </member>
         <member name="M:AInq.Helpers.Polly.HttpPolicyHelper.GetAsync(Polly.IAsyncPolicy{System.Net.Http.HttpResponseMessage},System.Net.Http.HttpClient,System.String,Microsoft.Extensions.Logging.ILogger,System.Threading.CancellationToken,System.Boolean,Microsoft.Extensions.Logging.LogLevel)">
             <summary> HTTP Get using preconfigured <see cref="T:System.Net.Http.HttpClient" /> </summary>
             <param name="policy"> Request policy </param>
