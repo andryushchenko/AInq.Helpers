@@ -5,9 +5,15 @@ VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AInq.Helpers.Email", "src\AInq.Helpers.Email\AInq.Helpers.Email.csproj", "{ADD00137-7169-4AAB-9DAF-B970FFBB2D15}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{3D8A346B-DB86-48A5-AEA4-2E245AA5FDE0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{3D8A346B-DB86-48A5-AEA4-2E245AA5FDE0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{BD586680-53FE-4EDE-9081-F57360D37855}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AInq.Helpers.Linq", "src\AInq.Helpers.Linq\AInq.Helpers.Linq.csproj", "{99138827-49FD-4622-B2CC-D02559A507F2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AInq.Helpers.Polly", "src\AInq.Helpers.Polly\AInq.Helpers.Polly.csproj", "{F32ACAC4-C61C-499F-AC00-6EDF4579BF73}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AInq.Helpers.PhoneNumber", "src\AInq.Helpers.PhoneNumber\AInq.Helpers.PhoneNumber.csproj", "{6FAA61B5-11EE-4902-B16A-DEFC49C54B44}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FB593AA5-264B-47EF-B53D-E22C2BBD3B42}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		AInq.Helpers.sln.DotSettings = AInq.Helpers.sln.DotSettings
@@ -15,12 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{BD586680-5
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AInq.Helpers.Linq", "src\AInq.Helpers.Linq\AInq.Helpers.Linq.csproj", "{99138827-49FD-4622-B2CC-D02559A507F2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AInq.Helpers.Polly", "src\AInq.Helpers.Polly\AInq.Helpers.Polly.csproj", "{F32ACAC4-C61C-499F-AC00-6EDF4579BF73}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AInq.Helpers.PhoneNumber", "src\AInq.Helpers.PhoneNumber\AInq.Helpers.PhoneNumber.csproj", "{6FAA61B5-11EE-4902-B16A-DEFC49C54B44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
