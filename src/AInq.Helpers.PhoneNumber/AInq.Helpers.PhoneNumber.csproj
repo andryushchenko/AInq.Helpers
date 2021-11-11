@@ -1,20 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<PackageTags>AInq;Email;Helper</PackageTags>
-		<Description>Simple helpers for Phone numbers</Description>
-	</PropertyGroup>
+    <PropertyGroup>
+        <PackageTags>AInq;Email;Helper</PackageTags>
+        <Description>Simple helpers for Phone numbers</Description>
+    </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DocumentationFile>..\..\doc\AInq.Helpers.PhoneNumber.xml</DocumentationFile>
-	</PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DocumentationFile>..\..\doc\AInq.Helpers.PhoneNumber.xml</DocumentationFile>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="libphonenumber-csharp" Version="8.12.34" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="libphonenumber-csharp" Version="8.12.34" />
+    </ItemGroup>
 
-	<ItemGroup>
-		<Using Include="PhoneNumbers" />
-	</ItemGroup>
+    <ItemGroup>
+        <Using Include="PhoneNumbers" />
+    </ItemGroup>
 
 </Project>
