@@ -10,7 +10,7 @@
         <Copyright>Anton Andryushchenko</Copyright>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/andryushchenko/AInq.Helpers</PackageProjectUrl>
-        <Version>2.1.0</Version>
+        <Version>2.1.1</Version>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -18,7 +18,7 @@
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <DebugType>portable</DebugType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>[IMP] Reproducible build</PackageReleaseNotes>
+        <PackageReleaseNotes>[UPD] Package references</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
