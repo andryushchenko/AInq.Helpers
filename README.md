@@ -50,4 +50,4 @@ If you find a bug, have a question or something else - you are friendly welcome 
 
 ## License
 
-Copyright © 2021 Anton Andryushchenko. AInq.Helpers is licensed under [Apache License 2.0](LICENSE)
+Copyright © 2021-2022 Anton Andryushchenko. AInq.Helpers is licensed under [Apache License 2.0](LICENSE)
