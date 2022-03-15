@@ -15,6 +15,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Compile Include="..\Shared\JetBrains.Annotations.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
         <Using Include="Microsoft.Extensions.Logging" />
         <Using Include="Microsoft.Extensions.Logging.Abstractions" />
         <Using Include="Polly" />
