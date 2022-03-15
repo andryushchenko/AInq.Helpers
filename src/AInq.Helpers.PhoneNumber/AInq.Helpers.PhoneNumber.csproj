@@ -3,8 +3,6 @@
     <PropertyGroup>
         <PackageTags>AInq;Email;Helper</PackageTags>
         <Description>Simple helpers for Phone numbers</Description>
-        <Version>2.1.2.2</Version>
-        <PackageReleaseNotes>[UPD] Libphonenumber package</PackageReleaseNotes>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

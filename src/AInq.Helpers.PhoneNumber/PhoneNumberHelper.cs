@@ -25,13 +25,16 @@ public static class PhoneNumberHelper
 
     /// <summary> Regions (ISO 3166) used for number parsing in order of priority </summary>
     /// <remarks> Default value is country code from <see cref="CultureInfo.CurrentCulture" /> </remarks>
+    [PublicAPI]
     public static IReadOnlyCollection<string> PhoneRegions { get; set; } =
         new[] {CultureInfo.CurrentCulture.Name.Split('-').Last().ToUpperInvariant()};
 
     /// <summary> Phone number extension separator used for result formatting </summary>
+    [PublicAPI]
     public static string ExtensionSeparator { get; set; } = DefaultExtensionSeparator;
 
     /// <inheritdoc cref="GetPhones(string,bool,string[])" />
+    [PublicAPI]
     public static ISet<string> GetPhones(this string source, IEnumerable<string> phoneRegions, bool trimExtension = false)
         => GetPhones(source, trimExtension, (phoneRegions ?? throw new ArgumentNullException(nameof(phoneRegions))).ToArray());
 
@@ -39,6 +42,7 @@ public static class PhoneNumberHelper
     /// <param name="source"> Source string </param>
     /// <param name="trimExtension"> Flag to trim phone number extensions </param>
     /// <param name="phoneRegions"> Regions for number parsing in order of priority (default is <see cref="PhoneRegions" />) </param>
+    [PublicAPI]
     public static ISet<string> GetPhones(this string source, bool trimExtension = false, params string[] phoneRegions)
         => string.IsNullOrWhiteSpace(source)
             ? new HashSet<string>(StringComparer.InvariantCultureIgnoreCase)
@@ -57,6 +61,7 @@ public static class PhoneNumberHelper
                 StringComparer.InvariantCultureIgnoreCase);
 
     /// <inheritdoc cref="GetMobilePhones(string,bool,string[])" />
+    [PublicAPI]
     public static ISet<string> GetMobilePhones(this string source, IEnumerable<string> phoneRegions, bool strict = true)
         => GetMobilePhones(source, strict, (phoneRegions ?? throw new ArgumentNullException(nameof(phoneRegions))).ToArray());
 
@@ -64,6 +69,7 @@ public static class PhoneNumberHelper
     /// <param name="source"> Source string </param>
     /// <param name="strict"> Flag to strictly check number type (ignore <see cref="PhoneNumberType.FIXED_LINE_OR_MOBILE" />) </param>
     /// <param name="phoneRegions"> Regions for number parsing in order of priority (default is <see cref="PhoneRegions" />) </param>
+    [PublicAPI]
     public static ISet<string> GetMobilePhones(this string source, bool strict = true, params string[] phoneRegions)
         => string.IsNullOrWhiteSpace(source)
             ? new HashSet<string>(StringComparer.InvariantCultureIgnoreCase)

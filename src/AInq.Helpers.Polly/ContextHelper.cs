@@ -24,6 +24,7 @@ public static class ContextHelper
     /// <param name="context"> Context </param>
     /// <param name="key"> Data key </param>
     /// <typeparam name="T"> Data type </typeparam>
+    [PublicAPI]
     public static T? Get<T>(this Context context, string key)
         => (context ?? throw new ArgumentNullException(nameof(context)))
            .TryGetValue(string.IsNullOrWhiteSpace(key) ? throw new ArgumentNullException(nameof(key)) : key, out var value)
@@ -35,6 +36,7 @@ public static class ContextHelper
     /// <param name="context"> Context </param>
     /// <param name="key"> Data key </param>
     /// <param name="value"> Data value </param>
+    [PublicAPI]
     public static Context With(this Context context, string key, object value)
     {
         (context ?? throw new ArgumentNullException(nameof(context)))[string.IsNullOrWhiteSpace(key)
@@ -46,22 +48,26 @@ public static class ContextHelper
     /// <summary> Add <see cref="CancellationToken" /> to context </summary>
     /// <param name="context"> Context </param>
     /// <param name="cancellation"> Cancellation token </param>
+    [PublicAPI]
     public static Context WithCancellation(this Context context, CancellationToken cancellation)
         => context.With(CancellationKey, cancellation);
 
     /// <summary> Get <see cref="CancellationToken" /> from context </summary>
     /// <param name="context"> Context </param>
+    [PublicAPI]
     public static CancellationToken GetCancellationToken(this Context context)
         => context.Get<CancellationToken>(CancellationKey);
 
     /// <summary> Add logger to context </summary>
     /// <param name="context"> Context </param>
     /// <param name="logger"> Logger instance </param>
+    [PublicAPI]
     public static Context WithLogger(this Context context, ILogger logger)
         => context.With(LoggerKey, logger ?? throw new ArgumentNullException(nameof(logger)));
 
     /// <summary> Get logger from context </summary>
     /// <param name="context"> Context </param>
+    [PublicAPI]
     public static ILogger GetLogger(this Context context)
         => context.Get<ILogger>(LoggerKey) ?? NullLogger.Instance;
 }

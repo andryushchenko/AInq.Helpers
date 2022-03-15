@@ -3,8 +3,6 @@
     <PropertyGroup>
         <PackageTags>AInq;Polly;Helper</PackageTags>
         <Description>Helpers for Polly: store data in Context, retry policies, HTTP request with policy</Description>
-        <Version>2.1.2.2</Version>
-        <PackageReleaseNotes>[UPD] Package references</PackageReleaseNotes>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

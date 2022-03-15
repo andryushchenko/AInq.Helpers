@@ -26,11 +26,13 @@ public static class EmailHelper
 
     /// <summary> Check is source string contains correct email </summary>
     /// <param name="source"> Source </param>
+    [PublicAPI]
     public static bool ContainsEmail(this string source)
         => !string.IsNullOrWhiteSpace(source) && Pattern.Value.IsMatch(source);
 
     /// <summary> Check is source string is correct email </summary>
     /// <param name="source"> Source </param>
+    [PublicAPI]
     public static bool IsEmail(this string source)
     {
         if (string.IsNullOrWhiteSpace(source)) return false;
@@ -42,6 +44,7 @@ public static class EmailHelper
     /// <param name="source"> Source </param>
     /// <param name="trimMarker"> Remove additional marker (user+MARKER@domain) from email </param>
     /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
+    [PublicAPI]
     public static string GetEmail(this string source, bool trimMarker = false)
     {
         var matches = Pattern.Value.Matches(source ?? throw new ArgumentNullException(nameof(source)));
@@ -58,6 +61,7 @@ public static class EmailHelper
     /// <summary> Get emails from source string </summary>
     /// <param name="source"> Source </param>
     /// <param name="trimMarker"> Remove additional marker (user+MARKER@domain) from email </param>
+    [PublicAPI]
     public static IReadOnlyCollection<string> GetEmails(this string source, bool trimMarker = false)
         => string.IsNullOrWhiteSpace(source)
             ? Array.Empty<string>()
@@ -73,6 +77,7 @@ public static class EmailHelper
     /// <summary> Get user name (USER+marker@domain) from email </summary>
     /// <param name="email"> Email </param>
     /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
+    [PublicAPI]
     public static string GetEmailUser(this string email)
     {
         var matches = Pattern.Value.Matches(email ?? throw new ArgumentNullException(nameof(email)));
@@ -87,6 +92,7 @@ public static class EmailHelper
     /// <summary> Get domain name (user+marker@DOMAIN) from email </summary>
     /// <param name="email"> Email </param>
     /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
+    [PublicAPI]
     public static string GetEmailDomain(this string email)
     {
         var matches = Pattern.Value.Matches(email ?? throw new ArgumentNullException(nameof(email)));

@@ -20,6 +20,7 @@ namespace AInq.Helpers.Polly;
 public static class HttpRetryPolicies
 {
     /// <summary> Retry forever on transient errors with logging if request context contains logger </summary>
+    [PublicAPI]
     public static IAsyncPolicy<HttpResponseMessage> TransientRetryAsyncPolicy()
         => Policy.Handle<HttpRequestException>()
                  .OrResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.RequestTimeout || (int) response.StatusCode >= 500)
@@ -27,6 +28,7 @@ public static class HttpRetryPolicies
 
     /// <summary> Retry on transient errors with logging if request context contains logger </summary>
     /// <param name="maxRetry"> Max retry count </param>
+    [PublicAPI]
     public static IAsyncPolicy<HttpResponseMessage> TransientRetryAsyncPolicy(int maxRetry)
         => Policy.Handle<HttpRequestException>()
                  .OrResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.RequestTimeout || (int) response.StatusCode >= 500)
@@ -34,6 +36,7 @@ public static class HttpRetryPolicies
 
     /// <summary> Retry forever with given timeout on HTTP 429 with logging if request context contains logger </summary>
     /// <param name="timeout"> Retry timeout </param>
+    [PublicAPI]
     public static IAsyncPolicy<HttpResponseMessage> TimeoutRetryAsyncPolicy(TimeSpan timeout)
     {
         if (timeout < TimeSpan.Zero) throw new ArgumentOutOfRangeException(nameof(timeout));
@@ -43,6 +46,7 @@ public static class HttpRetryPolicies
     /// <summary> Retry with given timeout on HTTP 429 with logging if request context contains logger </summary>
     /// <param name="timeout"> Retry timeout </param>
     /// <param name="maxRetry"> Max retry count </param>
+    [PublicAPI]
     public static IAsyncPolicy<HttpResponseMessage> TimeoutRetryAsyncPolicy(TimeSpan timeout, int maxRetry)
     {
         if (timeout < TimeSpan.Zero) throw new ArgumentOutOfRangeException(nameof(timeout));
@@ -52,6 +56,7 @@ public static class HttpRetryPolicies
 
     /// <summary> Retry forever with provided timeout on HTTP 429 with logging if request context contains logger </summary>
     /// <param name="timeoutProvider"> Timeout value provider </param>
+    [PublicAPI]
     public static IAsyncPolicy<HttpResponseMessage> TimeoutRetryAsyncPolicy(Func<int, TimeSpan> timeoutProvider)
     {
         _ = timeoutProvider ?? throw new ArgumentNullException(nameof(timeoutProvider));
@@ -61,6 +66,7 @@ public static class HttpRetryPolicies
     /// <summary> Retry with provided timeout on HTTP 429 with logging if request context contains logger </summary>
     /// <param name="timeoutProvider"> Timeout value provider </param>
     /// <param name="maxRetry"> Max retry count </param>
+    [PublicAPI]
     public static IAsyncPolicy<HttpResponseMessage> TimeoutRetryAsyncPolicy(Func<int, TimeSpan> timeoutProvider, int maxRetry)
     {
         _ = timeoutProvider ?? throw new ArgumentNullException(nameof(timeoutProvider));
@@ -70,6 +76,7 @@ public static class HttpRetryPolicies
 
     /// <summary> Retry forever with provided timeout on HTTP 429 with logging if request context contains logger </summary>
     /// <param name="timeoutProvider"> Timeout value provider </param>
+    [PublicAPI]
     public static IAsyncPolicy<HttpResponseMessage> TimeoutRetryAsyncPolicy(Func<HttpResponseMessage, int, TimeSpan> timeoutProvider)
     {
         _ = timeoutProvider ?? throw new ArgumentNullException(nameof(timeoutProvider));
@@ -80,6 +87,7 @@ public static class HttpRetryPolicies
     /// <summary> Retry with provided timeout on HTTP 429 with logging if request context contains logger </summary>
     /// <param name="timeoutProvider"> Timeout value provider </param>
     /// <param name="maxRetry"> Max retry count </param>
+    [PublicAPI]
     public static IAsyncPolicy<HttpResponseMessage> TimeoutRetryAsyncPolicy(Func<HttpResponseMessage, int, TimeSpan> timeoutProvider, int maxRetry)
     {
         _ = timeoutProvider ?? throw new ArgumentNullException(nameof(timeoutProvider));

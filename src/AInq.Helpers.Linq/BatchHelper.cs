@@ -22,6 +22,7 @@ public static class BatchHelper
     /// <param name="batchSize"> Maximum batch size </param>
     /// <typeparam name="T"> Element type </typeparam>
     /// <exception cref="ArgumentOutOfRangeException"> Thrown for incorrect <paramref name="batchSize" /> </exception>
+    [PublicAPI]
     public static IEnumerable<IEnumerable<T>> Batch<T>(this IEnumerable<T> source, long batchSize)
     {
         _ = source ?? throw new ArgumentNullException(nameof(source));
@@ -36,12 +37,14 @@ public static class BatchHelper
     /// <param name="batchSize"> Maximum batch size </param>
     /// <typeparam name="T"> Element type </typeparam>
     /// <exception cref="ArgumentOutOfRangeException"> Thrown for incorrect <paramref name="batchSize" /> </exception>
+    [PublicAPI]
     public static async IAsyncEnumerable<IAsyncEnumerable<T>> Batch<T>(this IAsyncEnumerable<T> source, long batchSize)
     {
         _ = source ?? throw new ArgumentNullException(nameof(source));
         if (batchSize < 1) throw new ArgumentOutOfRangeException(nameof(batchSize), batchSize, "Should be >= 1");
-        await using var enumerator = source.GetAsyncEnumerator();
-        while (await enumerator.MoveNextAsync())
+        var enumerator = source.GetAsyncEnumerator();
+        await using var disposable = enumerator.ConfigureAwait(false);
+        while (await enumerator.MoveNextAsync().ConfigureAwait(false))
             yield return enumerator.TakeAsync(batchSize);
     }
 
@@ -60,7 +63,7 @@ public static class BatchHelper
     {
         yield return enumerator.Current;
         count--;
-        while (count > 0 && await enumerator.MoveNextAsync())
+        while (count > 0 && await enumerator.MoveNextAsync().ConfigureAwait(false))
         {
             count--;
             yield return enumerator.Current;
