@@ -9,8 +9,4 @@
         <DocumentationFile>..\..\doc\AInq.Helpers.Email.xml</DocumentationFile>
     </PropertyGroup>
 
-    <ItemGroup>
-        <Compile Include="..\Shared\JetBrains.Annotations.cs" />
-    </ItemGroup>
-
 </Project>

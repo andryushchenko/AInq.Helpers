@@ -14,10 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="..\Shared\JetBrains.Annotations.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
         <Using Include="PhoneNumbers" />
     </ItemGroup>
 
