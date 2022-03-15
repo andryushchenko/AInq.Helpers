@@ -3,7 +3,7 @@
     <PropertyGroup>
         <PackageTags>AInq;Email;Helper</PackageTags>
         <Description>Simple helpers for Phone numbers</Description>
-        <Version>2.1.2.1</Version>
+        <Version>2.1.2.2</Version>
         <PackageReleaseNotes>[UPD] Libphonenumber package</PackageReleaseNotes>
     </PropertyGroup>
 
@@ -12,7 +12,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="libphonenumber-csharp" Version="8.12.43" />
+        <PackageReference Include="libphonenumber-csharp" Version="8.12.45" />
     </ItemGroup>
 
     <ItemGroup>
