@@ -5,8 +5,4 @@
         <Description>Simple helpers for Email</Description>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <DocumentationFile>..\..\doc\AInq.Helpers.Email.xml</DocumentationFile>
-    </PropertyGroup>
-
 </Project>

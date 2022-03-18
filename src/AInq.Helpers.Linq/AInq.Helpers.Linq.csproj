@@ -5,10 +5,6 @@
         <Description>Helpers for Linq: IEnumerable and IAsyncEnumerable Batch</Description>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <DocumentationFile>..\..\doc\AInq.Helpers.Linq.xml</DocumentationFile>
-    </PropertyGroup>
-
     <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
         <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
     </ItemGroup>
