@@ -5,10 +5,6 @@
         <Description>Simple helpers for Phone numbers</Description>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <DocumentationFile>..\..\doc\AInq.Helpers.PhoneNumber.xml</DocumentationFile>
-    </PropertyGroup>
-
     <ItemGroup>
         <PackageReference Include="libphonenumber-csharp" Version="8.12.45" />
     </ItemGroup>
