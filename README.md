@@ -2,6 +2,8 @@
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/andryushchenko/AInq.Helpers)](https://github.com/andryushchenko/AInq.Helpers/releases) [![GitHub](https://img.shields.io/github/license/andryushchenko/AInq.Helpers)](LICENSE)
 
+![AInq](https://raw.githubusercontent.com/andryushchenko/AInq.Helpers/main/AInq.png)
+
 ## What is it?
 
 Collection of simple helpers for .Net
