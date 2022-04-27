@@ -50,24 +50,24 @@ public static class ContextHelper
     /// <param name="cancellation"> Cancellation token </param>
     [PublicAPI]
     public static Context WithCancellation(this Context context, CancellationToken cancellation)
-        => context.With(CancellationKey, cancellation);
+        => (context ?? throw new ArgumentNullException(nameof(context))).With(CancellationKey, cancellation);
 
     /// <summary> Get <see cref="CancellationToken" /> from context </summary>
     /// <param name="context"> Context </param>
     [PublicAPI]
     public static CancellationToken GetCancellationToken(this Context context)
-        => context.Get<CancellationToken>(CancellationKey);
+        => (context ?? throw new ArgumentNullException(nameof(context))).Get<CancellationToken>(CancellationKey);
 
     /// <summary> Add logger to context </summary>
     /// <param name="context"> Context </param>
     /// <param name="logger"> Logger instance </param>
     [PublicAPI]
     public static Context WithLogger(this Context context, ILogger logger)
-        => context.With(LoggerKey, logger ?? throw new ArgumentNullException(nameof(logger)));
+        => (context ?? throw new ArgumentNullException(nameof(context))).With(LoggerKey, logger ?? throw new ArgumentNullException(nameof(logger)));
 
     /// <summary> Get logger from context </summary>
     /// <param name="context"> Context </param>
     [PublicAPI]
     public static ILogger GetLogger(this Context context)
-        => context.Get<ILogger>(LoggerKey) ?? NullLogger.Instance;
+        => (context ?? throw new ArgumentNullException(nameof(context))).Get<ILogger>(LoggerKey) ?? NullLogger.Instance;
 }

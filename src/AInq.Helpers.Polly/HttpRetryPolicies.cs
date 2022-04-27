@@ -134,9 +134,9 @@ public static class HttpRetryPolicies
     }
 
     private static PolicyBuilder<HttpResponseMessage> CreateHttp429PolicyBuilder()
-#if NETSTANDARD2_1_OR_GREATER
-        => Policy.HandleResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.TooManyRequests);
-#else
+#if NETSTANDARD2_0
         => Policy.HandleResult<HttpResponseMessage>(response => response.StatusCode == (HttpStatusCode) 429);
+#else
+        => Policy.HandleResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.TooManyRequests);
 #endif
 }

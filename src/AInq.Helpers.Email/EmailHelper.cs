@@ -27,13 +27,13 @@ public static class EmailHelper
     /// <summary> Check is source string contains correct email </summary>
     /// <param name="source"> Source </param>
     [PublicAPI]
-    public static bool ContainsEmail(this string source)
+    public static bool ContainsEmail(this string? source)
         => !string.IsNullOrWhiteSpace(source) && Pattern.Value.IsMatch(source);
 
     /// <summary> Check is source string is correct email </summary>
     /// <param name="source"> Source </param>
     [PublicAPI]
-    public static bool IsEmail(this string source)
+    public static bool IsEmail(this string? source)
     {
         if (string.IsNullOrWhiteSpace(source)) return false;
         var matches = Pattern.Value.Matches(source);
