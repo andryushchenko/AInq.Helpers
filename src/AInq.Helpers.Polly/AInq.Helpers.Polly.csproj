@@ -5,8 +5,15 @@
         <Description>Helpers for Polly: store data in Context, retry policies, HTTP request with policy</Description>
     </PropertyGroup>
 
+    <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.2" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)'!='netcoreapp3.1'">
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0-rc.1.22426.10" />
+    </ItemGroup>
+
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
         <PackageReference Include="Polly" Version="7.2.3" />
     </ItemGroup>
 

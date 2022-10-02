@@ -3,14 +3,14 @@
     <Sdk Name="DotNet.ReproducibleBuilds.Isolated" Version="1.1.1" />
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.1;net6.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.1;net6.0;net7.0</TargetFrameworks>
         <Product>AInq.Helpers</Product>
         <Authors>Anton Andryushchenko</Authors>
         <RepositoryUrl>https://github.com/andryushchenko/AInq.Helpers</RepositoryUrl>
         <Copyright>Copyright (c) Anton Andryushchenko</Copyright>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/andryushchenko/AInq.Helpers</PackageProjectUrl>
-        <LangVersion>latest</LangVersion>
+        <LangVersion>preview</LangVersion>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

@@ -17,18 +17,30 @@ using System.Text.RegularExpressions;
 namespace AInq.Helpers.Email;
 
 /// <summary> Email <see cref="string" /> extension </summary>
+#if NET7_0_OR_GREATER
+public static partial class EmailHelper
+#else
 public static class EmailHelper
+#endif
 {
-    private static readonly Lazy<Regex> Pattern = new(() => new Regex(
+#if NET7_0_OR_GREATER
+    [GeneratedRegex(@"\s*(?<email>(?<user>\w[\w!#$%&'*/=?`{|}~^-]*(?:\.[\w!#$%&'*/=?`{|}~^-]+)*)(?<marker>\+[\w!#$%&'*/=?`{|}~^+\.-]*)?@(?<domain>(?:[a-z0-9-]+\.)+[a-z]{2,}))\s*",RegexOptions.IgnoreCase|RegexOptions.NonBacktracking)]
+    private static partial Regex Pattern();
+#else
+    private static readonly Lazy<Regex> PatternValue = new(() => new Regex(
         @"\s*(?<email>(?<user>\w[\w!#$%&'*/=?`{|}~^-]*(?:\.[\w!#$%&'*/=?`{|}~^-]+)*)(?<marker>\+[\w!#$%&'*/=?`{|}~^+\.-]*)?@(?<domain>(?:[a-z0-9-]+\.)+[a-z]{2,}))\s*",
         RegexOptions.IgnoreCase | RegexOptions.Compiled,
         Regex.InfiniteMatchTimeout));
+
+    private static Regex Pattern()
+        => PatternValue.Value;
+#endif
 
     /// <summary> Check is source string contains correct email </summary>
     /// <param name="source"> Source </param>
     [PublicAPI]
     public static bool ContainsEmail(this string? source)
-        => !string.IsNullOrWhiteSpace(source) && Pattern.Value.IsMatch(source);
+        => !string.IsNullOrWhiteSpace(source) && Pattern().IsMatch(source);
 
     /// <summary> Check is source string is correct email </summary>
     /// <param name="source"> Source </param>
@@ -36,7 +48,7 @@ public static class EmailHelper
     public static bool IsEmail(this string? source)
     {
         if (string.IsNullOrWhiteSpace(source)) return false;
-        var matches = Pattern.Value.Matches(source);
+        var matches = Pattern().Matches(source);
         return matches.Count == 1 && string.Equals(matches[0].Value, source, StringComparison.InvariantCultureIgnoreCase);
     }
 
@@ -47,7 +59,7 @@ public static class EmailHelper
     [PublicAPI]
     public static string GetEmail(this string source, bool trimMarker = false)
     {
-        var matches = Pattern.Value.Matches(source ?? throw new ArgumentNullException(nameof(source)));
+        var matches = Pattern().Matches(source ?? throw new ArgumentNullException(nameof(source)));
         return matches.Count switch
         {
             0 => throw new ArgumentException("Not a correct email", nameof(source)),
@@ -65,13 +77,14 @@ public static class EmailHelper
     public static IReadOnlyCollection<string> GetEmails(this string source, bool trimMarker = false)
         => string.IsNullOrWhiteSpace(source)
             ? Array.Empty<string>()
-            : new HashSet<string>(Pattern.Value.Matches(source)
+            : new HashSet<string>(Pattern()
+                                  .Matches(source)
 #if NETSTANDARD2_0
                                          .Cast<Match>()
 #endif
-                                         .Select(match => trimMarker
-                                             ? $"{match.Groups["user"].Value}@{match.Groups["domain"].Value}".ToLowerInvariant()
-                                             : match.Groups["email"].Value.ToLowerInvariant()),
+                                  .Select(match => trimMarker
+                                      ? $"{match.Groups["user"].Value}@{match.Groups["domain"].Value}".ToLowerInvariant()
+                                      : match.Groups["email"].Value.ToLowerInvariant()),
                 StringComparer.InvariantCultureIgnoreCase);
 
     /// <summary> Get user name (USER+marker@domain) from email </summary>
@@ -80,7 +93,7 @@ public static class EmailHelper
     [PublicAPI]
     public static string GetEmailUser(this string email)
     {
-        var matches = Pattern.Value.Matches(email ?? throw new ArgumentNullException(nameof(email)));
+        var matches = Pattern().Matches(email ?? throw new ArgumentNullException(nameof(email)));
         return matches.Count switch
         {
             0 => throw new ArgumentException("Not a correct email", nameof(email)),
@@ -95,7 +108,7 @@ public static class EmailHelper
     [PublicAPI]
     public static string GetEmailDomain(this string email)
     {
-        var matches = Pattern.Value.Matches(email ?? throw new ArgumentNullException(nameof(email)));
+        var matches = Pattern().Matches(email ?? throw new ArgumentNullException(nameof(email)));
         return matches.Count switch
         {
             0 => throw new ArgumentException("Not a correct email", nameof(email)),
