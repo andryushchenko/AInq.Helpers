@@ -24,7 +24,9 @@ public static class EmailHelper
 #endif
 {
 #if NET7_0_OR_GREATER
-    [GeneratedRegex(@"\s*(?<email>(?<user>\w[\w!#$%&'*/=?`{|}~^-]*(?:\.[\w!#$%&'*/=?`{|}~^-]+)*)(?<marker>\+[\w!#$%&'*/=?`{|}~^+\.-]*)?@(?<domain>(?:[a-z0-9-]+\.)+[a-z]{2,}))\s*",RegexOptions.IgnoreCase|RegexOptions.NonBacktracking)]
+    [GeneratedRegex(
+        @"\s*(?<email>(?<user>\w[\w!#$%&'*/=?`{|}~^-]*(?:\.[\w!#$%&'*/=?`{|}~^-]+)*)(?<marker>\+[\w!#$%&'*/=?`{|}~^+\.-]*)?@(?<domain>(?:[a-z0-9-]+\.)+[a-z]{2,}))\s*",
+        RegexOptions.IgnoreCase | RegexOptions.NonBacktracking)]
     private static partial Regex Pattern();
 #else
     private static readonly Lazy<Regex> PatternValue = new(() => new Regex(
