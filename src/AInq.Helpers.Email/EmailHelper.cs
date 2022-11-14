@@ -82,7 +82,7 @@ public static class EmailHelper
             : new HashSet<string>(Pattern()
                                   .Matches(source)
 #if NETSTANDARD2_0
-                                         .Cast<Match>()
+                                  .Cast<Match>()
 #endif
                                   .Select(match => trimMarker
                                       ? $"{match.Groups["user"].Value}@{match.Groups["domain"].Value}".ToLowerInvariant()
