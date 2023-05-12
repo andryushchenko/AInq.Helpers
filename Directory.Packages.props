@@ -10,7 +10,7 @@
         <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
         <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
         <PackageVersion Include="Polly" Version="7.2.3" />
-        <PackageVersion Include="libphonenumber-csharp" Version="8.13.7" />
+        <PackageVersion Include="libphonenumber-csharp" Version="8.13.11" />
     </ItemGroup>
 
     <ItemGroup>
