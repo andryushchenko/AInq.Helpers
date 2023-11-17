@@ -7,10 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
-        <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
-        <PackageVersion Include="Polly" Version="8.0.0" />
-        <PackageVersion Include="libphonenumber-csharp" Version="8.13.23" />
+        <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
+        <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+        <PackageVersion Include="Polly" Version="8.2.0" />
+        <PackageVersion Include="libphonenumber-csharp" Version="8.13.24" />
     </ItemGroup>
 
     <ItemGroup>
