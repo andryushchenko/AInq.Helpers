@@ -23,6 +23,7 @@ public static class HttpRetryPolicies
     [PublicAPI]
     public static IAsyncPolicy<HttpResponseMessage> TransientRetryAsyncPolicy()
         => Policy.Handle<HttpRequestException>()
+                 .Or<TaskCanceledException>(ex => ex.InnerException is TimeoutException)
                  .OrResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.RequestTimeout || (int) response.StatusCode >= 500)
                  .RetryForeverAsync(OnTransientRetry);
 
@@ -31,6 +32,7 @@ public static class HttpRetryPolicies
     [PublicAPI]
     public static IAsyncPolicy<HttpResponseMessage> TransientRetryAsyncPolicy(int maxRetry)
         => Policy.Handle<HttpRequestException>()
+                 .Or<TaskCanceledException>(ex => ex.InnerException is TimeoutException)
                  .OrResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.RequestTimeout || (int) response.StatusCode >= 500)
                  .RetryAsync(maxRetry >= 1 ? maxRetry : throw new ArgumentOutOfRangeException(nameof(maxRetry)), OnTransientRetry);
 
