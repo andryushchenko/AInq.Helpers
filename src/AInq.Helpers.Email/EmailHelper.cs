@@ -17,13 +17,19 @@ using System.Text.RegularExpressions;
 namespace AInq.Helpers.Email;
 
 /// <summary> Email <see cref="string" /> extension </summary>
-#if NETSTANDARD
-public static class EmailHelper
-#else
+#if NET8_0_OR_GREATER
 public static partial class EmailHelper
+#else
+public static class EmailHelper
 #endif
 {
-#if NETSTANDARD
+#if NET8_0_OR_GREATER
+    [GeneratedRegex(
+        @"\s*(?<email>(?<user>\w[\w!#$%&'*/=?`{|}~^-]*(?:\.[\w!#$%&'*/=?`{|}~^-]+)*)(?<marker>\+[\w!#$%&'*/=?`{|}~^+\.-]*)?@(?<domain>(?:[a-z0-9-]+\.)+[a-z]{2,}))\s*",
+        RegexOptions.IgnoreCase | RegexOptions.NonBacktracking)]
+    private static partial Regex Pattern();
+    
+#else
     private static readonly Lazy<Regex> PatternValue = new(() => new Regex(
         @"\s*(?<email>(?<user>\w[\w!#$%&'*/=?`{|}~^-]*(?:\.[\w!#$%&'*/=?`{|}~^-]+)*)(?<marker>\+[\w!#$%&'*/=?`{|}~^+\.-]*)?@(?<domain>(?:[a-z0-9-]+\.)+[a-z]{2,}))\s*",
         RegexOptions.IgnoreCase | RegexOptions.Compiled,
@@ -31,11 +37,6 @@ public static partial class EmailHelper
 
     private static Regex Pattern()
         => PatternValue.Value;
-#else
-    [GeneratedRegex(
-        @"\s*(?<email>(?<user>\w[\w!#$%&'*/=?`{|}~^-]*(?:\.[\w!#$%&'*/=?`{|}~^-]+)*)(?<marker>\+[\w!#$%&'*/=?`{|}~^+\.-]*)?@(?<domain>(?:[a-z0-9-]+\.)+[a-z]{2,}))\s*",
-        RegexOptions.IgnoreCase | RegexOptions.NonBacktracking)]
-    private static partial Regex Pattern();
 #endif
 
     /// <summary> Check is source string contains correct email </summary>
