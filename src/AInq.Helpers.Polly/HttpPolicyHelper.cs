@@ -29,7 +29,7 @@ public static class HttpPolicyHelper
         if (content != null)
             context.With(ContentKey, content);
         if (!string.IsNullOrWhiteSpace(url))
-#if NETSTANDARD2_0
+#if NETSTANDARD
             context.With(UrlKey, url!);
 #else
             context.With(UrlKey, url);

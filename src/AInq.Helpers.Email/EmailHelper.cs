@@ -17,19 +17,13 @@ using System.Text.RegularExpressions;
 namespace AInq.Helpers.Email;
 
 /// <summary> Email <see cref="string" /> extension </summary>
-#if NET8_0_OR_GREATER
-public static partial class EmailHelper
-#else
+#if NETSTANDARD
 public static class EmailHelper
+#else
+public static partial class EmailHelper
 #endif
 {
-#if NET8_0_OR_GREATER
-    [GeneratedRegex(
-        @"\s*(?<email>(?<user>\w[\w!#$%&'*/=?`{|}~^-]*(?:\.[\w!#$%&'*/=?`{|}~^-]+)*)(?<marker>\+[\w!#$%&'*/=?`{|}~^+\.-]*)?@(?<domain>(?:[a-z0-9-]+\.)+[a-z]{2,}))\s*",
-        RegexOptions.IgnoreCase | RegexOptions.NonBacktracking)]
-    private static partial Regex Pattern();
-    
-#else
+#if NETSTANDARD
     private static readonly Lazy<Regex> PatternValue = new(() => new Regex(
         @"\s*(?<email>(?<user>\w[\w!#$%&'*/=?`{|}~^-]*(?:\.[\w!#$%&'*/=?`{|}~^-]+)*)(?<marker>\+[\w!#$%&'*/=?`{|}~^+\.-]*)?@(?<domain>(?:[a-z0-9-]+\.)+[a-z]{2,}))\s*",
         RegexOptions.IgnoreCase | RegexOptions.Compiled,
@@ -37,6 +31,11 @@ public static class EmailHelper
 
     private static Regex Pattern()
         => PatternValue.Value;
+#else
+    [GeneratedRegex(
+        @"\s*(?<email>(?<user>\w[\w!#$%&'*/=?`{|}~^-]*(?:\.[\w!#$%&'*/=?`{|}~^-]+)*)(?<marker>\+[\w!#$%&'*/=?`{|}~^+\.-]*)?@(?<domain>(?:[a-z0-9-]+\.)+[a-z]{2,}))\s*",
+        RegexOptions.IgnoreCase | RegexOptions.NonBacktracking)]
+    private static partial Regex Pattern();
 #endif
 
     /// <summary> Check is source string contains correct email </summary>
@@ -58,7 +57,7 @@ public static class EmailHelper
     /// <summary> Get single email from source string </summary>
     /// <param name="source"> Source </param>
     /// <param name="trimMarker"> Remove additional marker (user+MARKER@domain) from email </param>
-    /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
+    /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more than one email </exception>
     [PublicAPI]
     public static string GetEmail(this string source, bool trimMarker = false)
     {
@@ -82,7 +81,7 @@ public static class EmailHelper
             ? Array.Empty<string>()
             : new HashSet<string>(Pattern()
                                   .Matches(source)
-#if NETSTANDARD2_0
+#if NETSTANDARD
                                   .Cast<Match>()
 #endif
                                   .Select(match => trimMarker
@@ -92,7 +91,7 @@ public static class EmailHelper
 
     /// <summary> Get user name (USER+marker@domain) from email </summary>
     /// <param name="email"> Email </param>
-    /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
+    /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more than one email </exception>
     [PublicAPI]
     public static string GetEmailUser(this string email)
     {
@@ -107,7 +106,7 @@ public static class EmailHelper
 
     /// <summary> Get domain name (user+marker@DOMAIN) from email </summary>
     /// <param name="email"> Email </param>
-    /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more then one email </exception>
+    /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more than one email </exception>
     [PublicAPI]
     public static string GetEmailDomain(this string email)
     {

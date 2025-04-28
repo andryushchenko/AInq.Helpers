@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net6.0;net8.0;net9.0</TargetFrameworks>
         <PackageTags>AInq;Email;Helper</PackageTags>
         <Description>Simple helpers for Phone numbers</Description>
     </PropertyGroup>
