@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/Packages/">
+    <Project Path="src/AInq.Helpers.Email/AInq.Helpers.Email.csproj" />
+    <Project Path="src/AInq.Helpers.Linq/AInq.Helpers.Linq.csproj" />
+    <Project Path="src/AInq.Helpers.PhoneNumber/AInq.Helpers.PhoneNumber.csproj" />
+    <Project Path="src/AInq.Helpers.Polly/AInq.Helpers.Polly.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="AInq.png" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="LICENSE" />
+    <File Path="nuget.config" />
+    <File Path="README.md" />
+    <File Path="src/Shared/JetBrains.Annotations.cs" />
+  </Folder>
+</Solution>
