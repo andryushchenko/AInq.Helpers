@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageVersion Include="Polly" Version="8.6.0" />
+        <PackageVersion Include="Polly" Version="8.6.1" />
         <PackageVersion Include="libphonenumber-csharp" Version="9.0.7" />
         <PackageVersion Include="System.Buffers" Version="4.6.1" />
         <PackageVersion Include="System.Memory" Version="4.6.3" />
