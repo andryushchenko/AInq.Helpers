@@ -8,7 +8,7 @@
 
     <ItemGroup>
         <PackageVersion Include="Polly" Version="8.6.2" />
-        <PackageVersion Include="libphonenumber-csharp" Version="9.0.11" />
+        <PackageVersion Include="libphonenumber-csharp" Version="9.0.12" />
         <PackageVersion Include="System.Buffers" Version="4.6.1" />
         <PackageVersion Include="System.Memory" Version="4.6.3" />
         <PackageVersion Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
@@ -33,7 +33,6 @@
 
     <ItemGroup>
         <GlobalPackageReference Include="DotNet.ReproducibleBuilds" Version="1.2.25" PrivateAssets="All" />
-        <GlobalPackageReference Include="Microsoft.Build.CopyOnWrite" Version="1.0.334" PrivateAssets="All" />
     </ItemGroup>
 
 </Project>
