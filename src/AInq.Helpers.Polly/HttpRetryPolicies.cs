@@ -114,25 +114,29 @@ public static class HttpRetryPolicies
         => OnTimeoutRetry(result, attempt, wait, context);
 
     private static void OnTimeoutRetry(DelegateResult<HttpResponseMessage> result, int attempt, TimeSpan wait, Context context)
-        => context.GetLogger()
-                  .LogWarning("HTTP {Method} to {Url} failed with {Code} - retry {Attempt} after {Timeout}",
-                      result.Result.RequestMessage?.Method,
-                      result.Result.RequestMessage?.RequestUri,
-                      result.Result.StatusCode,
-                      attempt,
-                      wait);
+    {
+        var logger = context.GetLogger();
+        if (!logger.IsEnabled(LogLevel.Warning)) return;
+        logger.LogWarning("HTTP {Method} to {Url} failed with {Code} - retry {Attempt} after {Timeout}",
+            result.Result.RequestMessage?.Method,
+            result.Result.RequestMessage?.RequestUri,
+            result.Result.StatusCode,
+            attempt,
+            wait);
+    }
 
     private static void OnTransientRetry(DelegateResult<HttpResponseMessage> result, int attempt, Context context)
     {
+        var logger = context.GetLogger();
+        if (!logger.IsEnabled(LogLevel.Warning)) return;
         if (result.Exception == null)
-            context.GetLogger()
-                   .LogWarning("HTTP {Method} to {Url} failed with {Code} - retry {Attempt}",
-                       result.Result.RequestMessage?.Method,
-                       result.Result.RequestMessage?.RequestUri,
-                       result.Result.StatusCode,
-                       attempt);
+            logger.LogWarning("HTTP {Method} to {Url} failed with {Code} - retry {Attempt}",
+                result.Result.RequestMessage?.Method,
+                result.Result.RequestMessage?.RequestUri,
+                result.Result.StatusCode,
+                attempt);
         else
-            context.GetLogger().LogWarning(result.Exception, "HTTP Request failed with exception - retry {Attempt}", attempt);
+            logger.LogWarning(result.Exception, "HTTP Request failed with exception - retry {Attempt}", attempt);
     }
 
     private static PolicyBuilder<HttpResponseMessage> CreateHttp429PolicyBuilder()

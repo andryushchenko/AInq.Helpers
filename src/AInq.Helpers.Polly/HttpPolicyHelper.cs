@@ -45,7 +45,12 @@ public static class HttpPolicyHelper
                                      cancellation,
                                      continueOnCapturedContext)
                                  .ConfigureAwait(continueOnCapturedContext);
-        logger.Log(logLevel, "HTTP {Method} to {Url} - {Code}", result.RequestMessage?.Method, result.RequestMessage?.RequestUri, result.StatusCode);
+        if (logger.IsEnabled(logLevel))
+            logger.Log(logLevel,
+                "HTTP {Method} to {Url} - {Code}",
+                result.RequestMessage?.Method,
+                result.RequestMessage?.RequestUri,
+                result.StatusCode);
         return result;
     }
 
