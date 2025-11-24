@@ -38,84 +38,86 @@ public static partial class EmailHelper
     private static partial Regex Pattern();
 #endif
 
-    /// <summary> Check is source string contains correct email </summary>
-    /// <param name="source"> Source </param>
-    [PublicAPI]
-    public static bool ContainsEmail(this string? source)
-        => !string.IsNullOrWhiteSpace(source) && Pattern().IsMatch(source);
-
-    /// <summary> Check is source string is correct email </summary>
-    /// <param name="source"> Source </param>
-    [PublicAPI]
-    public static bool IsEmail(this string? source)
+    /// <param name="source"> Source string </param>
+    extension(string? source)
     {
-        if (string.IsNullOrWhiteSpace(source)) return false;
-        var matches = Pattern().Matches(source);
-        return matches.Count == 1 && string.Equals(matches[0].Value, source, StringComparison.InvariantCultureIgnoreCase);
-    }
+        /// <summary> Check is source string contains correct email </summary>
+        [PublicAPI]
+        public bool ContainsEmail()
+            => !string.IsNullOrWhiteSpace(source) && Pattern().IsMatch(source);
 
-    /// <summary> Get single email from source string </summary>
-    /// <param name="source"> Source </param>
-    /// <param name="trimMarker"> Remove additional marker (user+MARKER@domain) from email </param>
-    /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more than one email </exception>
-    [PublicAPI]
-    public static string GetEmail(this string source, bool trimMarker = false)
-    {
-        var matches = Pattern().Matches(source ?? throw new ArgumentNullException(nameof(source)));
-        return matches.Count switch
+        /// <summary> Check is source string is correct email </summary>
+        [PublicAPI]
+        public bool IsEmail()
         {
-            0 => throw new ArgumentException("Not a correct email", nameof(source)),
-            1 => trimMarker
-                ? $"{matches[0].Groups["user"].Value}@{matches[0].Groups["domain"].Value}".ToLowerInvariant()
-                : matches[0].Groups["email"].Value.ToLowerInvariant(),
-            _ => throw new ArgumentException("Source contains more than one email", nameof(source))
-        };
+            if (string.IsNullOrWhiteSpace(source)) return false;
+            var matches = Pattern().Matches(source);
+            return matches.Count == 1 && string.Equals(matches[0].Value, source, StringComparison.InvariantCultureIgnoreCase);
+        }
     }
 
-    /// <summary> Get emails from source string </summary>
-    /// <param name="source"> Source </param>
-    /// <param name="trimMarker"> Remove additional marker (user+MARKER@domain) from email </param>
-    [PublicAPI]
-    public static IReadOnlyCollection<string> GetEmails(this string source, bool trimMarker = false)
-        => string.IsNullOrWhiteSpace(source)
-            ? Array.Empty<string>()
-            : new HashSet<string>(Pattern()
-                                  .Matches(source)
+    /// <param name="source"> Source string </param>
+    extension(string source)
+    {
+        /// <summary> Get single email from source string </summary>
+        /// <param name="trimMarker"> Remove additional marker (user+MARKER@domain) from email </param>
+        /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more than one email </exception>
+        [PublicAPI]
+        public string GetEmail(bool trimMarker = false)
+        {
+            var matches = Pattern().Matches(source ?? throw new ArgumentNullException(nameof(source)));
+            return matches.Count switch
+            {
+                0 => throw new ArgumentException("Not a correct email", nameof(source)),
+                1 => trimMarker
+                    ? $"{matches[0].Groups["user"].Value}@{matches[0].Groups["domain"].Value}".ToLowerInvariant()
+                    : matches[0].Groups["email"].Value.ToLowerInvariant(),
+                _ => throw new ArgumentException("Source contains more than one email", nameof(source))
+            };
+        }
+
+        /// <summary> Get emails from source string </summary>
+        /// <param name="trimMarker"> Remove additional marker (user+MARKER@domain) from email </param>
+        [PublicAPI]
+        public IReadOnlyCollection<string> GetEmails(bool trimMarker = false)
+            => string.IsNullOrWhiteSpace(source)
+                ? Array.Empty<string>()
+                : new HashSet<string>(Pattern()
+                                      .Matches(source)
 #if NETSTANDARD
-                                  .Cast<Match>()
+                                      .Cast<Match>()
 #endif
-                                  .Select(match => trimMarker
-                                      ? $"{match.Groups["user"].Value}@{match.Groups["domain"].Value}".ToLowerInvariant()
-                                      : match.Groups["email"].Value.ToLowerInvariant()),
-                StringComparer.InvariantCultureIgnoreCase);
+                                      .Select(match => trimMarker
+                                          ? $"{match.Groups["user"].Value}@{match.Groups["domain"].Value}".ToLowerInvariant()
+                                          : match.Groups["email"].Value.ToLowerInvariant()),
+                    StringComparer.InvariantCultureIgnoreCase);
 
-    /// <summary> Get user name (USER+marker@domain) from email </summary>
-    /// <param name="email"> Email </param>
-    /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more than one email </exception>
-    [PublicAPI]
-    public static string GetEmailUser(this string email)
-    {
-        var matches = Pattern().Matches(email ?? throw new ArgumentNullException(nameof(email)));
-        return matches.Count switch
+        /// <summary> Get user name (USER+marker@domain) from email </summary>
+        /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more than one email </exception>
+        [PublicAPI]
+        public string GetEmailUser()
         {
-            0 => throw new ArgumentException("Not a correct email", nameof(email)),
-            1 => matches[0].Groups["user"].Value.ToLowerInvariant(),
-            _ => throw new ArgumentException("Source contains more than one email", nameof(email))
-        };
-    }
+            var matches = Pattern().Matches(source ?? throw new ArgumentNullException(nameof(source)));
+            return matches.Count switch
+            {
+                0 => throw new ArgumentException("Not a correct email", nameof(source)),
+                1 => matches[0].Groups["user"].Value.ToLowerInvariant(),
+                _ => throw new ArgumentException("Source contains more than one email", nameof(source))
+            };
+        }
 
-    /// <summary> Get domain name (user+marker@DOMAIN) from email </summary>
-    /// <param name="email"> Email </param>
-    /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more than one email </exception>
-    [PublicAPI]
-    public static string GetEmailDomain(this string email)
-    {
-        var matches = Pattern().Matches(email ?? throw new ArgumentNullException(nameof(email)));
-        return matches.Count switch
+        /// <summary> Get domain name (user+marker@DOMAIN) from email </summary>
+        /// <exception cref="ArgumentException"> Thrown if source is not correct email or contains more than one email </exception>
+        [PublicAPI]
+        public string GetEmailDomain()
         {
-            0 => throw new ArgumentException("Not a correct email", nameof(email)),
-            1 => matches[0].Groups["domain"].Value.ToLowerInvariant(),
-            _ => throw new ArgumentException("Source contains more than one email", nameof(email))
-        };
+            var matches = Pattern().Matches(source ?? throw new ArgumentNullException(nameof(source)));
+            return matches.Count switch
+            {
+                0 => throw new ArgumentException("Not a correct email", nameof(source)),
+                1 => matches[0].Groups["domain"].Value.ToLowerInvariant(),
+                _ => throw new ArgumentException("Source contains more than one email", nameof(source))
+            };
+        }
     }
 }

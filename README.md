@@ -9,6 +9,7 @@
 Collection of simple helpers for .Net
 
 ## Packages description
+
 #### [![Nuget](https://img.shields.io/nuget/v/AInq.Helpers.Linq)](https://www.nuget.org/packages/AInq.Helpers.Linq/) AInq.Helpers.Linq
 
 Helpers for `IEnumerable<T>` and `IAsyncEnumerable<T>`
@@ -20,8 +21,8 @@ Helpers for `IEnumerable<T>` and `IAsyncEnumerable<T>`
 Helpers library to use with [Polly](https://github.com/App-vNext/Polly)
 
 - Ready to use retry policies with logging
-  - `TransientRetryAsyncPolicy` for transient errors
-  - `TimeoutRetryAsyncPolicy` for HTTP 429
+    - `TransientRetryAsyncPolicy` for transient errors
+    - `TimeoutRetryAsyncPolicy` for HTTP 429
 - Helpers to store data in `Polly.Context`
 - Helpers to execute HTTP requests with `Polly.IAsyncPolicy<HttpResponseMessage>`
 
@@ -30,7 +31,7 @@ Helpers library to use with [Polly](https://github.com/App-vNext/Polly)
 Helpers to work with email address
 
 - Get emails form string source
-- Check if string is correct email 
+- Check if string is correct email
 - Get specific email address parts
 
 #### [![Nuget](https://img.shields.io/nuget/v/AInq.Helpers.PhoneNumber)](https://www.nuget.org/packages/AInq.Helpers.PhoneNumber/) AInq.Helpers.PhoneNumber
