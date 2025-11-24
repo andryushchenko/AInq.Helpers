@@ -28,8 +28,9 @@ public static class ContextHelper
         /// <typeparam name="T"> Data type </typeparam>
         [PublicAPI]
         public T? Get<T>(string key)
-            => (context ?? throw new ArgumentNullException(nameof(context)))
-               .TryGetValue(string.IsNullOrWhiteSpace(key) ? throw new ArgumentNullException(nameof(key)) : key, out var value)
+            => (context ?? throw new ArgumentNullException(nameof(context))).TryGetValue(
+                   string.IsNullOrWhiteSpace(key) ? throw new ArgumentNullException(nameof(key)) : key,
+                   out var value)
                && value is T result
                 ? result
                 : default;

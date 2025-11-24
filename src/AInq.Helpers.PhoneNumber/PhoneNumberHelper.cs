@@ -80,17 +80,20 @@ public static class PhoneNumberHelper
         public ISet<string> GetMobilePhones(bool strict = true, params string[] phoneRegions)
             => string.IsNullOrWhiteSpace(source)
                 ? new HashSet<string>(StringComparer.InvariantCultureIgnoreCase)
-                : new HashSet<string>((phoneRegions.Length == 0 ? PhoneRegions : phoneRegions)
-                                      .Aggregate(Enumerable.Empty<PhoneNumberMatch>(),
-                                          (matches, region)
-                                              => matches.Union(Util.Value.FindNumbers(source, region)
-                                                                   .Where(match => strict
-                                                                       ? IsNumberOfType(match.Number, PhoneNumberType.MOBILE)
-                                                                       : IsNumberOfType(match.Number,
-                                                                           PhoneNumberType.MOBILE,
-                                                                           PhoneNumberType.FIXED_LINE_OR_MOBILE)),
-                                                  Comparer))
-                                      .Select(match => Util.Value.Format(match.Number, PhoneNumberFormat.E164)),
+                : new HashSet<string>((phoneRegions.Length == 0 ? PhoneRegions : phoneRegions).Aggregate(Enumerable.Empty<PhoneNumberMatch>(),
+                                                                                                  (matches, region)
+                                                                                                      => matches.Union(Util.Value
+                                                                                                              .FindNumbers(source, region)
+                                                                                                              .Where(match => strict
+                                                                                                                  ? IsNumberOfType(match.Number,
+                                                                                                                      PhoneNumberType.MOBILE)
+                                                                                                                  : IsNumberOfType(match.Number,
+                                                                                                                      PhoneNumberType.MOBILE,
+                                                                                                                      PhoneNumberType
+                                                                                                                          .FIXED_LINE_OR_MOBILE)),
+                                                                                                          Comparer))
+                                                                                              .Select(match => Util.Value.Format(match.Number,
+                                                                                                  PhoneNumberFormat.E164)),
                     StringComparer.InvariantCultureIgnoreCase);
     }
 }
