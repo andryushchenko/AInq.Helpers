@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageVersion Include="Polly" Version="8.6.5" />
-        <PackageVersion Include="libphonenumber-csharp" Version="9.0.23" />
+        <PackageVersion Include="Polly" Version="8.6.6" />
+        <PackageVersion Include="libphonenumber-csharp" Version="9.0.27" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
